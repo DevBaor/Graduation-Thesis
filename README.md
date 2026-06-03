@@ -253,7 +253,7 @@ flutter build apk --release
 - `PUT /api/rooms/{id}` - Cập nhật phòng
 - `DELETE /api/rooms/{id}` - Xóa phòng
 
-### Cư Dân
+### Khách
 - `GET /api/residents` - Danh sách khách
 - `POST /api/residents` - Thêm khách
 - `GET /api/residents/{id}` - Chi tiết khách
