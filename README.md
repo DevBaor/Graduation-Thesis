@@ -1,4 +1,4 @@
-# 🏠 DATN_K13 - Hệ Thống Quản Lý Nhà Trọ Thông Minh
+# 🏠 Graduation Thesis - Hệ Thống Quản Lý Nhà Trọ Thông Minh
 
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-blue?logo=php)](https://www.php.net/)
 [![Laravel](https://img.shields.io/badge/Laravel-9.0%2B-orange?logo=laravel)](https://laravel.com/)
@@ -12,13 +12,13 @@
 
 ## 📌 Giới Thiệu
 
-DATN_K13 là hệ thống quản lý nhà trọ thông minh được xây dựng như một hệ sinh thái hoàn chỉnh với:
+Graduation Thesis là hệ thống quản lý nhà trọ thông minh được xây dựng như một hệ sinh thái hoàn chỉnh với:
 - **Backend API**: Laravel xử lý logic quản lý
 - **AI Engine**: Phân tích dữ liệu, dự báo xu hướng
 - **Frontend Web**: Giao diện quản lý cho chủ trọ
-- **Mobile App**: Ứng dụng Flutter cho khách và chủ trọ
+- **Mobile App**: Ứng dụng Flutter cho Khách và chủ trọ
 
-Hệ thống giúp tối ưu hóa vận hành và quản lý nhà trọ, từ quản lý phòng, phí dịch vụ đến tương tác khách.
+Hệ thống giúp tối ưu hóa vận hành và quản lý nhà trọ, từ quản lý phòng, phí dịch vụ đến tương tác Khách.
 
 ---
 
@@ -31,8 +31,8 @@ Hệ thống giúp tối ưu hóa vận hành và quản lý nhà trọ, từ qu
 - ✅ Quản lý người thuê và hợp đồng
 
 ### 👥 Quản Lý Khách
-- ✅ Lưu thông tin khách chi tiết
-- ✅ Theo dõi lịch sử khách
+- ✅ Lưu thông tin Khách chi tiết
+- ✅ Theo dõi lịch sử Khách
 - ✅ Quản lý thành viên gia đình
 - ✅ Liên lạc và thông báo
 
@@ -44,9 +44,9 @@ Hệ thống giúp tối ưu hóa vận hành và quản lý nhà trọ, từ qu
 
 ### 🤖 AI Engine
 - ✅ Dự báo nhu cầu phòng
-- ✅ Phân tích hành vi khách
+- ✅ Phân tích hành vi Khách
 - ✅ Gợi ý giá phòng tối ưu
-- ✅ Phân loại khách rủi ro
+- ✅ Phân loại Khách rủi ro
 
 ### 📱 Mobile App
 - ✅ Khách xem thông tin phòng
@@ -86,7 +86,7 @@ Hệ thống giúp tối ưu hóa vận hành và quản lý nhà trọ, từ qu
 ## 📦 Cấu Trúc Dự Án
 
 ```
-DATN_K13/
+Graduation-Thesis/
 ├── nhatro-main/              # Laravel API chính (Port 8001)
 │   ├── app/
 │   ├── routes/
@@ -125,8 +125,8 @@ DATN_K13/
 
 ```bash
 # Clone repository
-git clone https://github.com/DevBaor/DATN_K13.git
-cd DATN_K13/nhatro-main
+git clone https://github.com/DevBaor/Graduation-Thesis.git
+cd Graduation-Thesis/nhatro-main
 
 # Cài đặt dependencies
 composer install
@@ -229,7 +229,7 @@ flutter build apk --release
 
 ### 📱 Sử Dụng Mobile App
 1. Cài đặt app từ APK hoặc build từ source
-2. Đăng nhập với tài khoản khách
+2. Đăng nhập với tài khoản Khách
 3. Xem thông tin phòng, thanh toán, gửi yêu cầu
 
 ### 🤖 Sử Dụng AI Engine
@@ -254,9 +254,9 @@ flutter build apk --release
 - `DELETE /api/rooms/{id}` - Xóa phòng
 
 ### Khách
-- `GET /api/residents` - Danh sách khách
-- `POST /api/residents` - Thêm khách
-- `GET /api/residents/{id}` - Chi tiết khách
+- `GET /api/residents` - Danh sách Khách
+- `POST /api/residents` - Thêm Khách
+- `GET /api/residents/{id}` - Chi tiết Khách
 
 ### Tài Chính
 - `GET /api/payments` - Danh sách thanh toán
@@ -285,7 +285,7 @@ flutter build apk --release
 
 ## 🔗 Liên Kết
 
-- 📧 Email: baotranduy666666@gmail.com
+- 📧 Email: baotraduy666666@gmail.com
 - 🔗 LinkedIn: [Duy Bảo](https://linkedin.com/in/duybaot105)
 - 💬 GitHub: [@DevBaor](https://github.com/DevBaor)
 
@@ -303,4 +303,4 @@ Cảm ơn các thầy cô hướng dẫn và những người góp ý trong quá
 
 ---
 
-**Made with ❤️ by Duy Bảo - DATN_K13**
+**Made with ❤️ by Duy Bảo - Graduation Thesis Team**
