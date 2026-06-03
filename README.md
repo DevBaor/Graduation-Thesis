@@ -16,7 +16,7 @@ DATN_K13 là hệ thống quản lý nhà trọ thông minh được xây dựng
 - **Backend API**: Laravel xử lý logic quản lý
 - **AI Engine**: Phân tích dữ liệu, dự báo xu hướng
 - **Frontend Web**: Giao diện quản lý cho chủ trọ
-- **Mobile App**: Ứng dụng Flutter cho cư dân và chủ trọ
+- **Mobile App**: Ứng dụng Flutter cho khách và chủ trọ
 
 Hệ thống giúp tối ưu hóa vận hành và quản lý nhà trọ, từ quản lý phòng, phí dịch vụ đến tương tác khách.
 
@@ -30,8 +30,8 @@ Hệ thống giúp tối ưu hóa vận hành và quản lý nhà trọ, từ qu
 - ✅ Theo dõi trạng thái phòng (trống, có người, bảo trì)
 - ✅ Quản lý người thuê và hợp đồng
 
-### 👥 Quản Lý Cư Dân
-- ✅ Lưu thông tin cư dân chi tiết
+### 👥 Quản Lý Khách
+- ✅ Lưu thông tin khách chi tiết
 - ✅ Theo dõi lịch sử khách
 - ✅ Quản lý thành viên gia đình
 - ✅ Liên lạc và thông báo
@@ -46,10 +46,10 @@ Hệ thống giúp tối ưu hóa vận hành và quản lý nhà trọ, từ qu
 - ✅ Dự báo nhu cầu phòng
 - ✅ Phân tích hành vi khách
 - ✅ Gợi ý giá phòng tối ưu
-- ✅ Phân loại cư dân rủi ro
+- ✅ Phân loại khách rủi ro
 
 ### 📱 Mobile App
-- ✅ Cư dân xem thông tin phòng
+- ✅ Khách xem thông tin phòng
 - ✅ Thanh toán tiền phòng
 - ✅ Gửi yêu cầu bảo trì
 - ✅ Nhận thông báo từ chủ trọ
@@ -229,7 +229,7 @@ flutter build apk --release
 
 ### 📱 Sử Dụng Mobile App
 1. Cài đặt app từ APK hoặc build từ source
-2. Đăng nhập với tài khoản cư dân
+2. Đăng nhập với tài khoản khách
 3. Xem thông tin phòng, thanh toán, gửi yêu cầu
 
 ### 🤖 Sử Dụng AI Engine
