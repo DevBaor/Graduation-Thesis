@@ -1,4 +1,4 @@
-# 🏠 Smart Boarding House Management System (KLCN_TH071)
+# 🏠 Smart Boarding House Management System
 ### Reinforcement Learning-Driven Room Allocation via Dueling Deep Q-Network
 
 [![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
