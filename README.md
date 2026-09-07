@@ -1,5 +1,5 @@
 # 🏠 Smart Boarding House Management System (KLCN_TH071)
-### Reinforcement Learning-Driven Room Allocation via Dueling Deep Q-Network & Automated VietQR Payment Gateway
+### Reinforcement Learning-Driven Room Allocation via Dueling Deep Q-Network
 
 [![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
 [![Laravel](https://img.shields.io/badge/Laravel-9.0%2B-FF2D20?logo=laravel&logoColor=white)](https://laravel.com/)
@@ -12,7 +12,6 @@
 
 > **Graduation Thesis Project**  
 > **Topic**: *Building a Smart Boarding House Management System with Optimal Room Allocation for Tenants Based on Preferences and Constraints.*  
-> **Advisor**: M.Sc. Bui Cong Danh  
 > **Author**: Duy Bao ([@DevBaor](https://github.com/DevBaor))
 
 ---
