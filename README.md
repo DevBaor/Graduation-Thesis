@@ -1,5 +1,5 @@
-# 🏠 HỆ THỐNG QUẢN LÝ NHÀ TRỌ THÔNG MINH (KLCN_TH071)
-### Ứng dụng Học Tăng Cường Dueling Deep Q-Network Tối Ưu Phân Bố Phòng Trọ & Tự Động Hóa Thanh Toán VietQR
+# 🏠 Smart Boarding House Management System (KLCN_TH071)
+### Reinforcement Learning-Driven Room Allocation via Dueling Deep Q-Network & Automated VietQR Payment Gateway
 
 [![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
 [![Laravel](https://img.shields.io/badge/Laravel-9.0%2B-FF2D20?logo=laravel&logoColor=white)](https://laravel.com/)
@@ -10,24 +10,24 @@
 [![VietQR](https://img.shields.io/badge/VietQR-AutoPayment-005BAA)](https://vietqr.net/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **Đồ Án Khóa Luận Tốt Nghiệp**  
-> **Đề tài**: *Xây dựng hệ thống quản lý hệ thống nhà trọ ứng dụng tối ưu hóa phân bố phòng trọ cho khách thuê dựa trên sở thích và ràng buộc.*  
-> **Giảng viên hướng dẫn**: ThS. Bùi Công Danh  
-> **Sinh viên thực hiện**: Duy Bảo (@DevBaor)
+> **Graduation Thesis Project**  
+> **Topic**: *Building a Smart Boarding House Management System with Optimal Room Allocation for Tenants Based on Preferences and Constraints.*  
+> **Advisor**: M.Sc. Bui Cong Danh  
+> **Author**: Duy Bao ([@DevBaor](https://github.com/DevBaor))
 
 ---
 
-## 📌 1. Giới Thiệu Tổng Quan
+## 📌 1. Project Overview
 
-Dự án là một **hệ sinh thái toàn diện** phục vụ công tác quản lý, vận hành nhà trọ và kết nối khách thuê theo hướng hiện đại, thông minh. Hệ thống giải quyết trọn vẹn 3 bài toán cốt lõi trong thực tế:
+This project delivers a **comprehensive, modern ecosystem** for residential boarding house operations, room discovery, and tenant management. It directly addresses three fundamental industry challenges:
 
-1. **Tối ưu hóa phân bố phòng trọ bằng AI**: Sử dụng thuật toán Học tăng cường sâu **Dueling Deep Q-Network (DQN)** để ghép đôi thông minh giữa nhu cầu khách thuê (giá cả, diện tích, tiện ích, vị trí) và phòng trọ của chủ nhà, giải quyết bài toán đa mục tiêu: vừa thỏa mãn tối đa khách thuê, vừa giảm tỷ lệ phòng trống tồn đọng lâu ngày cho chủ trọ.
-2. **Hệ thống thanh toán tự động VietQR**: Tích hợp công nghệ sinh mã QR động chuẩn Napas247 và Webhook tự động gạch nợ thời gian thực, xóa bỏ hoàn toàn thao tác đối soát thủ công chuyển khoản ngân hàng.
-3. **Cổng thông tin & Ứng dụng di động đa phân quyền**: Cung cấp đầy đủ giao diện chuyên biệt cho **Chủ trọ**, **Khách thuê** và **Quản trị viên (Admin)** trên cả nền tảng Web Portal và Mobile App (Flutter).
+1. **AI-Driven Multi-Objective Room Allocation**: Utilizes a customized **Dueling Deep Q-Network (DQN)** to dynamically match tenant preferences (budget, dimensions, amenities, target location) with available listings while concurrently minimizing vacant room durations for landlords.
+2. **Automated VietQR Payment Processing**: Incorporates dynamic Napas247 / EMVCo-compliant QR code generation and real-time webhook listeners, completely eliminating manual payment reconciliation.
+3. **Role-Based Portals & Cross-Platform Mobile Application**: Features specialized portals for **Tenants**, **Landlords**, and **System Administrators** across both web browsers (Laravel Blade) and mobile devices (Flutter).
 
 ---
 
-## 🏗️ 2. Kiến Trúc Hệ Thống (System Architecture)
+## 🏗️ 2. System Architecture
 
 ```
                             ┌─────────────────────────────────────────┐
@@ -42,159 +42,166 @@ Dự án là một **hệ sinh thái toàn diện** phục vụ công tác quả
 │                           BACKEND & CORE SERVICES                               │
 ├─────────────────────────────────────────┬───────────────────────────────────────┤
 │  nhatro-main (Port 8001)                │  NhaTro1 / Web Portal (Port 8000)     │
-│  - RESTful API Backend                  │  - Quản trị Chủ trọ (Quản lý phòng)   │
-│  - Xử lý nghiệp vụ, xác thực JWT        │  - Cổng Khách thuê (Hợp đồng, sự cố)  │
-│  - Quản lý hóa đơn, phòng, dịch vụ      │  - Tự động hóa thanh toán VietQR      │
+│  - RESTful API Backend                  │  - Landlord Operations (Rooms, Beds)  │
+│  - Business logic, JWT Authentication   │  - Tenant Self-Service (Bills, Issues)│
+│  - Invoicing, Contracts, Service Fees   │  - VietQR Auto Payment Settlement     │
 └────────────────────┬────────────────────┴───────────────────┬───────────────────┘
                      │                                        │
                      │ HTTP Rest                              │
                      ▼                                        ▼
 ┌─────────────────────────────────────────┐      ┌────────────────────────────────┐
 │   ai_engine (PyTorch - Port 8002)       │      │   DATABASE (MySQL 8.0)         │
-│   - Candidate-scoring Dueling DQN       │      │   - schema: nha_tro.sql        │
-│   - Dynamic Action Space (s_user, a_rm) │      │   - Lưu trữ phòng, hợp đồng,   │
-│   - Multi-Objective Reward Engine       │      │     hóa đơn, lịch sử giao dịch │
-│   - FastAPI Microservice endpoints      │      └────────────────────────────────┘
+│   - Candidate-Scoring Dueling DQN       │      │   - schema: nha_tro.sql        │
+│   - Dynamic Action Space (s_user, a_rm) │      │   - Manages rooms, contracts,  │
+│   - Multi-Objective Reward Engine       │      │     invoices, and audit logs   │
+│   - FastAPI Microservice Endpoints      │      └────────────────────────────────┘
 └─────────────────────────────────────────┘
 ```
 
 ---
 
-## 🌟 3. Các Phân Hệ & Điểm Nổi Bật
+## 🌟 3. Core Modules & Innovations
 
-### 🤖 Phân Hệ AI Gợi Ý Phòng Trọ (Dueling DQN)
-- **Đột phá kiến trúc**: Khắc phục nhược điểm của DQN truyền thống (vốn yêu cầu số lượng phòng cố định). Thuật toán áp dụng kiến trúc **Candidate-Scoring Network**, nhận đầu vào là cặp vector kết hợp $(s_{user}, a_{room})$ và dự đoán điểm Q-Value thông qua 2 nhánh riêng biệt: *Value Stream V(s)* và *Advantage Stream A(s, a)*.
-- **Tối ưu đa mục tiêu (Multi-Objective Reward)**:
+### 🤖 Reinforcement Learning Recommendation Engine (Dueling DQN)
+- **Dynamic Candidate-Scoring Architecture**: Conventional DQN formulations presuppose a fixed action space ($|\mathcal{A}| = K$). To accommodate dynamically changing room availability, our model evaluates unified input state-action pairs $(s_{user}, a_{room})$ independently.
+- **Dueling Network Streams**: Decomposes the estimated $Q(s, a)$ into:
+  $$Q(s, a) = V(s) + \left( A(s, a) - \frac{1}{|\mathcal{A}|} \sum_{a'} A(s, a') \right)$$
+  ensuring robust value estimation across heterogeneous property features.
+- **Multi-Objective Reward Function**:
   $$R = R_{tenant} + R_{vacancy} - R_{penalty}$$
-  - $R_{tenant}$: Độ tương thích ngân sách, khoảng cách vị trí và tỷ lệ đáp ứng tiện ích yêu cầu.
-  - $R_{vacancy}$: Điểm thưởng giải phóng phòng trống tồn đọng lâu ngày cho chủ trọ.
-  - $R_{penalty}$: Phạt nặng nếu vi phạm các ràng buộc cứng (giá vượt quá trần, vi phạm quy định).
-- **Trải nghiệm khách hàng tinh tế**: Toàn bộ điểm số Q-value được chuyển đổi sang thanh chỉ số trực quan (*"98% Phù hợp"*, *"Phù hợp ngân sách"*, *"Đầy đủ tiện ích"*, *"Sẵn sàng dọn vào ngay"*), không hiển thị các thuật ngữ toán học phức tạp.
+  - $R_{tenant}$: Quantifies budget conformity, geographic proximity, and amenity satisfaction ratio.
+  - $R_{vacancy}$: Rewards the allocation of long-standing vacant rooms to maximize landlord revenue.
+  - $R_{penalty}$: Heavily penalizes hard constraint violations (e.g., exceeding budget ceiling).
+- **Tenant-Centric User Experience**: Complex reinforcement learning metrics are seamlessly rendered into intuitive front-end badges (*"98% Match"*, *"Budget Friendly"*, *"All Amenities Matched"*, *"Move-in Ready"*), abstracting mathematical jargon from everyday end users.
 
-### 💳 Phân Hệ Thanh Toán Tự Động VietQR
-- **Tự động sinh mã VietQR động**: Tạo mã QR thanh toán theo chuẩn EMVCo/Napas247 với số tiền chính xác và nội dung chuyển khoản duy nhất cho từng hóa đơn.
-- **Webhook Gạch nợ thời gian thực**: Khi khách chuyển khoản thành công, hệ thống ngân hàng gửi webhook về máy chủ, hóa đơn tự động chuyển trạng thái `PAID` và cập nhật tức thì trên giao diện qua cơ chế Long-polling.
-- **Mô phỏng 1-Click**: Tích hợp sẵn nút thanh toán thử nghiệm phục vụ demo nghiệm thu đồ án nhanh chóng.
+### 💳 Real-Time VietQR Payment Gateway
+- **Dynamic QR Code Generation**: Generates compliant VietQR images on demand with precise billing amounts and unique transfer memos.
+- **Automated Webhook Settlement**: Real-time callback listeners process bank transaction notifications instantly, transitioning invoices to `PAID` status and broadcasting live confirmation via polling mechanisms.
+- **One-Click Sandbox Mode**: Features a built-in demo simulator for instantaneous evaluation without requiring external bank APIs.
 
-### 🌐 Phân Hệ Web Portal & Mobile
-- **Khách thuê**: Tra cứu phòng, xem phân tích mức độ phù hợp, theo dõi hợp đồng, báo cáo sự cố hư hỏng, thanh toán tiền điện/nước/phòng.
-- **Chủ trọ**: Bảng điều khiển trực quan, quản lý danh sách phòng (trống, đang thuê, bảo trì), tạo hóa đơn hàng tháng, quản trị danh sách người thuê.
-- **Quản trị viên (Admin)**: Thống kê toàn diện doanh thu hệ thống, tỷ lệ lấp đầy phòng, tỷ lệ ghép phòng thành công.
+### 🌐 Management Portals
+- **Tenant Portal**: Browse verified listings, view AI compatibility scorecards, track lease agreements, report maintenance issues, and pay monthly utility bills.
+- **Landlord Dashboard**: Manage room inventories, floors, and occupancy statuses; automate monthly billing calculations; oversee tenant records.
+- **Admin Control Center**: Monitor system health, revenue trends, room fill rates, and algorithmic matchmaking metrics.
 
 ---
 
-## 📂 4. Cấu Trúc Mã Nguồn (Repository Structure)
+## 📂 4. Repository Structure
 
 ```
 Graduation-Thesis/
-├── NhaTro1/                  # Web Portal & Giao diện quản trị (Laravel PHP - Port 8000)
-│   ├── app/                  # Controllers, Models, Middleware
-│   ├── resources/views/      # Blade templates (Khách thuê, Chủ trọ, Admin, Checkout)
-│   ├── public/               # CSS, JavaScript (portal.css, portal.js)
-│   └── routes/               # Web & API routes (routes/web.php, routes/api.php)
+├── NhaTro1/                  # Web Portal & Management Interface (Laravel PHP - Port 8000)
+│   ├── app/                  # Controllers, Models, Middleware, Events
+│   ├── resources/views/      # Responsive Blade templates (Tenant, Landlord, Admin)
+│   ├── public/               # Frontend assets (portal.css, portal.js)
+│   └── routes/               # Web & API Route definitions
 │
-├── nhatro-main/              # Core API Backend (Laravel PHP - Port 8001)
-│   ├── app/                  # API Controllers, Business Logic, Services
-│   ├── database/             # Migrations, Seeders
-│   └── routes/api.php        # Danh mục RESTful API endpoints
+├── nhatro-main/              # Core API Backend Service (Laravel PHP - Port 8001)
+│   ├── app/                  # RESTful controllers, domain logic, service providers
+│   ├── database/             # Migrations, seeders, factories
+│   └── routes/api.php        # API endpoint registry
 │
-├── ai_engine/                # Dịch vụ AI Dueling DQN (Python PyTorch - Port 8002)
-│   ├── dqn_model.py          # Kiến trúc Dueling Dynamic DQN Network
-│   ├── train_dqn.py          # Huấn luyện mô hình với Replay Buffer & Target Net
-│   ├── evaluate_dqn.py       # Đánh giá so sánh: DQN vs Greedy vs Random
-│   ├── api.py                # FastAPI microservice (/recommend, /score)
-│   ├── utils.py              # Hàm tính Reward đa mục tiêu & mã hóa Feature
-│   ├── dqn_room.pt           # Trọng số mô hình đã được huấn luyện hội tụ
-│   └── requirements.txt      # Thư viện Python phụ thuộc
+├── ai_engine/                # AI Recommendation Microservice (PyTorch - Port 8002)
+│   ├── dqn_model.py          # Dynamic Candidate-Scoring Dueling DQN definition
+│   ├── train_dqn.py          # Training pipeline with Experience Replay & Target Net
+│   ├── evaluate_dqn.py       # Benchmark evaluation (DQN vs Greedy vs Random)
+│   ├── api.py                # FastAPI endpoints (/recommend, /score)
+│   ├── utils.py              # Feature encoders & multi-objective reward calculation
+│   ├── dqn_room.pt           # Pre-trained converged model weights checkpoint
+│   └── requirements.txt      # Python dependencies
 │
-├── DATN_Mobile/              # Ứng dụng di động đa nền tảng (Flutter)
-│   ├── lib/                  # Screens, Controllers, Models, Services
-│   └── pubspec.yaml          # Cấu hình dependencies Flutter
+├── DATN_Mobile/              # Cross-Platform Mobile Application (Flutter)
+│   ├── lib/                  # Screens, controllers, models, API integrations
+│   └── pubspec.yaml          # Flutter package dependencies
 │
-├── nha_tro.sql               # Cơ sở dữ liệu mẫu MySQL đầy đủ dữ liệu demo
-├── .gitignore                # Cấu hình bỏ qua các file tạm, cache, vendor
-└── README.md                 # Tài liệu hướng dẫn đồ án
+├── nha_tro.sql               # Seed database dump with comprehensive demo records
+├── .gitignore                # Global ignore rules for clean repository hygiene
+└── README.md                 # Complete project documentation
 ```
 
 ---
 
-## 🚀 5. Hướng Dẫn Cài Đặt & Vận Hành
+## 🚀 5. Installation & Setup Guide
 
-### ⚙️ Yêu Cầu Môi Trường
-- **PHP**: >= 8.0 với các extension `pdo_mysql`, `mbstring`, `openssl`
-- **Composer**: >= 2.0
-- **Node.js & NPM**: >= 16.x
-- **Python**: >= 3.8 với `pip`
-- **MySQL**: >= 5.7 hoặc 8.0
-- **Flutter SDK**: >= 3.0 (cho ứng dụng di động)
+### ⚙️ Environment Prerequisites
+- **PHP**: $\ge$ 8.0 (with extensions: `pdo_mysql`, `mbstring`, `openssl`, `curl`)
+- **Composer**: $\ge$ 2.0
+- **Node.js & NPM**: $\ge$ 16.x
+- **Python**: $\ge$ 3.8 with `pip`
+- **MySQL Server**: $\ge$ 5.7 or 8.0
+- **Flutter SDK**: $\ge$ 3.0 (for mobile client)
 
 ---
 
-### Bước 1: Khởi Tạo Cơ Sở Dữ Liệu MySQL
-1. Khởi động MySQL (qua XAMPP, Laragon hoặc Docker).
-2. Tạo database mới tên `nha_tro`:
+### Step 1: Database Initialization
+1. Start your local MySQL service (via XAMPP, Laragon, or Docker).
+2. Create the project database:
    ```sql
    CREATE DATABASE nha_tro CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
    ```
-3. Nhập dữ liệu mẫu từ file `nha_tro.sql`:
+3. Import the database schema and sample data:
    ```bash
    mysql -u root -p nha_tro < nha_tro.sql
    ```
 
 ---
 
-### Bước 2: Khởi Động AI Engine Microservice (Port 8002)
+### Step 2: Start the AI Engine Microservice (Port 8002)
 ```bash
 cd ai_engine
 
-# Tạo môi trường ảo Python (khuyến nghị)
+# Initialize and activate Python virtual environment
 python -m venv venv
-venv\Scripts\activate   # Trên Windows
-# source venv/bin/activate # Trên Linux/Mac
+venv\Scripts\activate   # On Windows
+# source venv/bin/activate # On Linux/macOS
 
-# Cài đặt thư viện phụ thuộc
+# Install required dependencies
 pip install -r requirements.txt
 
-# Khởi chạy AI API Server
+# Launch FastAPI microservice server
 python -m uvicorn api:app --host 127.0.0.1 --port 8002 --reload
 ```
-> **Kiểm tra**: Truy cập tài liệu API tự động tại: `http://localhost:8002/docs`
+> **API Docs**: Interactive Swagger documentation is accessible at `http://localhost:8002/docs`.
 
 ---
 
-### Bước 3: Khởi Động Backend API (Port 8001)
+### Step 3: Start the Backend API (Port 8001)
 ```bash
 cd nhatro-main
 composer install
 cp .env.example .env
 php artisan key:generate
 
-# Cấu hình DB_DATABASE=nha_tro, DB_USERNAME, DB_PASSWORD trong .env
+# Configure database credentials in .env:
+# DB_DATABASE=nha_tro
+# DB_USERNAME=your_username
+# DB_PASSWORD=your_password
+
 php artisan serve --port=8001
 ```
 
 ---
 
-### Bước 4: Khởi Động Web Portal (Port 8000)
+### Step 4: Start the Web Portal (Port 8000)
 ```bash
 cd NhaTro1/nha-tro-api
 composer install
 cp .env.example .env
 php artisan key:generate
 
-# Khởi chạy Web Portal
+# Launch the Web Portal
 php artisan serve --port=8000
 ```
-> **Đường dẫn truy cập**:
-> - 🌐 **Trang chủ Khám phá**: `http://localhost:8000/`
-> - ✨ **Gợi ý phòng thông minh (Smart Match)**: `http://localhost:8000/ai-recommend`
-> - 🏢 **Cổng Chủ trọ**: `http://localhost:8000/chu-tro`
-> - 👥 **Cổng Khách thuê & Hóa đơn**: `http://localhost:8000/khach-thue`
-> - 🛡️ **Cổng Quản trị viên (Admin)**: `http://localhost:8000/admin-portal`
+> **Application Routes**:
+> - 🌐 **Public Room Search**: `http://localhost:8000/`
+> - ✨ **AI Smart Match**: `http://localhost:8000/ai-recommend`
+> - 🏢 **Landlord Portal**: `http://localhost:8000/chu-tro`
+> - 👥 **Tenant Portal & Invoices**: `http://localhost:8000/khach-thue`
+> - 🛡️ **Administrator Portal**: `http://localhost:8000/admin-portal`
 
 ---
 
-### Bước 5: Chạy Ứng Dụng Di Động (Flutter)
+### Step 5: Run the Flutter Mobile App
 ```bash
 cd DATN_Mobile
 flutter pub get
@@ -203,28 +210,28 @@ flutter run
 
 ---
 
-## 📊 6. Kết Quả Huấn Luyện Mô Hình AI
+## 📊 6. Experimental Results & Model Performance
 
-So sánh hiệu năng giữa thuật toán **Dueling DQN** và các phương pháp cơ sở trên tập dữ liệu kiểm thử (100 kịch bản ghép phòng):
+Comparative evaluation across 100 simulated tenant request scenarios:
 
-| Phương pháp | Tổng Reward trung bình | Điểm hài lòng khách thuê | Ngày phòng trống giảm thiểu |
+| Matchmaking Algorithm | Average Cumulative Reward | Tenant Satisfaction Score | Vacancy Reduction (Days) |
 | :--- | :---: | :---: | :---: |
-| **Ngẫu nhiên (Random)** | -0.05 | 42.1% | 15.2 ngày |
-| **Tham lam (Greedy Matching)** | +11.02 | 82.4% | 68.5 ngày |
-| **Dueling DQN (Đề tài)** | **+13.08** | **94.8%** | **152.1 ngày** |
+| **Random Allocation** | -0.05 | 42.1% | 15.2 days |
+| **Greedy Matchmaker** | +11.02 | 82.4% | 68.5 days |
+| **Dueling DQN (Ours)** | **+13.08** | **94.8%** | **152.1 days** |
 
-Mô hình Dueling DQN không chỉ tối đa hóa sự hài lòng của người thuê mà còn chứng minh hiệu quả vượt trội trong việc giúp chủ trọ lấp đầy các phòng trống lâu năm.
+The trained Dueling DQN model significantly outperforms conventional heuristic and greedy algorithms, delivering superior recommendation precision while actively reducing prolonged property vacancy.
 
 ---
 
-## 👨‍💻 Thông Tin Tác Giả & Đóng Góp
+## 👨‍💻 Author & Contact
 
-- **Tác giả**: Duy Bảo ([@DevBaor](https://github.com/DevBaor))
+- **Lead Developer**: Duy Bao ([@DevBaor](https://github.com/DevBaor))
 - **Email**: baotranduy666666@gmail.com
-- **Khóa luận tốt nghiệp**: Ngành Kỹ thuật Phần mềm / Công nghệ Thông tin (2022 - 2026)
+- **Degree Program**: Software Engineering / Information Technology (2022 – 2026)
 
 ---
 
-## 📝 Giấy Phép (License)
+## 📝 License
 
-Dự án được phân phối dưới giấy phép **MIT License**. Xem chi tiết tại tệp [LICENSE](LICENSE).
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
