@@ -1,306 +1,230 @@
-# 🏠 Graduation Thesis - Hệ Thống Quản Lý Nhà Trọ Thông Minh
+# 🏠 HỆ THỐNG QUẢN LÝ NHÀ TRỌ THÔNG MINH (KLCN_TH071)
+### Ứng dụng Học Tăng Cường Dueling Deep Q-Network Tối Ưu Phân Bố Phòng Trọ & Tự Động Hóa Thanh Toán VietQR
 
-[![PHP](https://img.shields.io/badge/PHP-7.4%2B-blue?logo=php)](https://www.php.net/)
-[![Laravel](https://img.shields.io/badge/Laravel-9.0%2B-orange?logo=laravel)](https://laravel.com/)
-[![Flutter](https://img.shields.io/badge/Flutter-3.0%2B-02569B?logo=flutter)](https://flutter.dev/)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
+[![Laravel](https://img.shields.io/badge/Laravel-9.0%2B-FF2D20?logo=laravel&logoColor=white)](https://laravel.com/)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Flutter](https://img.shields.io/badge/Flutter-3.0%2B-02569B?logo=flutter&logoColor=white)](https://flutter.dev/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![VietQR](https://img.shields.io/badge/VietQR-AutoPayment-005BAA)](https://vietqr.net/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**Đồ án tốt nghiệp 2022-2025 - Hệ sinh thái toàn diện hỗ trợ quản lý nhà trọ hiện đại**
-
----
-
-## 📌 Giới Thiệu
-
-Graduation Thesis là hệ thống quản lý nhà trọ thông minh được xây dựng như một hệ sinh thái hoàn chỉnh với:
-- **Backend API**: Laravel xử lý logic quản lý
-- **AI Engine**: Phân tích dữ liệu, dự báo xu hướng
-- **Frontend Web**: Giao diện quản lý cho chủ trọ
-- **Mobile App**: Ứng dụng Flutter cho Khách và chủ trọ
-
-Hệ thống giúp tối ưu hóa vận hành và quản lý nhà trọ, từ quản lý phòng, phí dịch vụ đến tương tác Khách.
+> **Đồ Án Khóa Luận Tốt Nghiệp**  
+> **Đề tài**: *Xây dựng hệ thống quản lý hệ thống nhà trọ ứng dụng tối ưu hóa phân bố phòng trọ cho khách thuê dựa trên sở thích và ràng buộc.*  
+> **Giảng viên hướng dẫn**: ThS. Bùi Công Danh  
+> **Sinh viên thực hiện**: Duy Bảo (@DevBaor)
 
 ---
 
-## 🎯 Tính Năng Chính
+## 📌 1. Giới Thiệu Tổng Quan
 
-### 🏢 Quản Lý Nhà Trọ
-- ✅ Quản lý danh sách phòng (loại, giá, trạng thái)
-- ✅ Quản lý tầng, khu vực
-- ✅ Theo dõi trạng thái phòng (trống, có người, bảo trì)
-- ✅ Quản lý người thuê và hợp đồng
+Dự án là một **hệ sinh thái toàn diện** phục vụ công tác quản lý, vận hành nhà trọ và kết nối khách thuê theo hướng hiện đại, thông minh. Hệ thống giải quyết trọn vẹn 3 bài toán cốt lõi trong thực tế:
 
-### 👥 Quản Lý Khách
-- ✅ Lưu thông tin Khách chi tiết
-- ✅ Theo dõi lịch sử Khách
-- ✅ Quản lý thành viên gia đình
-- ✅ Liên lạc và thông báo
-
-### 💰 Quản Lý Tài Chính
-- ✅ Quản lý tiền phòng và dịch vụ
-- ✅ Thanh toán online
-- ✅ Báo cáo doanh thu
-- ✅ Quản lý chi phí vận hành
-
-### 🤖 AI Engine
-- ✅ Dự báo nhu cầu phòng
-- ✅ Phân tích hành vi Khách
-- ✅ Gợi ý giá phòng tối ưu
-- ✅ Phân loại Khách rủi ro
-
-### 📱 Mobile App
-- ✅ Khách xem thông tin phòng
-- ✅ Thanh toán tiền phòng
-- ✅ Gửi yêu cầu bảo trì
-- ✅ Nhận thông báo từ chủ trọ
+1. **Tối ưu hóa phân bố phòng trọ bằng AI**: Sử dụng thuật toán Học tăng cường sâu **Dueling Deep Q-Network (DQN)** để ghép đôi thông minh giữa nhu cầu khách thuê (giá cả, diện tích, tiện ích, vị trí) và phòng trọ của chủ nhà, giải quyết bài toán đa mục tiêu: vừa thỏa mãn tối đa khách thuê, vừa giảm tỷ lệ phòng trống tồn đọng lâu ngày cho chủ trọ.
+2. **Hệ thống thanh toán tự động VietQR**: Tích hợp công nghệ sinh mã QR động chuẩn Napas247 và Webhook tự động gạch nợ thời gian thực, xóa bỏ hoàn toàn thao tác đối soát thủ công chuyển khoản ngân hàng.
+3. **Cổng thông tin & Ứng dụng di động đa phân quyền**: Cung cấp đầy đủ giao diện chuyên biệt cho **Chủ trọ**, **Khách thuê** và **Quản trị viên (Admin)** trên cả nền tảng Web Portal và Mobile App (Flutter).
 
 ---
 
-## 🛠️ Công Nghệ Sử Dụng
+## 🏗️ 2. Kiến Trúc Hệ Thống (System Architecture)
 
-### Backend
-- **PHP** 90.3%
-- **Laravel 9.0+** - Web framework
-- **MySQL** - Database
-- **Laravel API** - RESTful API
-
-### AI Engine
-- **Python 3.8+**
-- **TensorFlow / Scikit-learn** - Machine Learning
-- **Pandas, NumPy** - Data processing
-- **Uvicorn / FastAPI** - Python backend
-
-### Frontend Web
-- **Blade Templates** - Server-side rendering
-- **Bootstrap 5** - UI Framework
-- **JavaScript / jQuery** - Client-side scripting
-
-### Mobile
-- **Flutter 3.0+**
-- **Dart** - Programming language
-- **GetX / Provider** - State management
-- **HTTP Client** - API communication
+```
+                            ┌─────────────────────────────────────────┐
+                            │            CLIENT INTERFACES            │
+                            ├────────────────────┬────────────────────┤
+                            │  Flutter Mobile    │  Laravel Blade     │
+                            │  App (iOS/Android) │  Web Portal        │
+                            └─────────┬──────────┴──────────┬─────────┘
+                                      │                     │
+                                      ▼                     ▼
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                           BACKEND & CORE SERVICES                               │
+├─────────────────────────────────────────┬───────────────────────────────────────┤
+│  nhatro-main (Port 8001)                │  NhaTro1 / Web Portal (Port 8000)     │
+│  - RESTful API Backend                  │  - Quản trị Chủ trọ (Quản lý phòng)   │
+│  - Xử lý nghiệp vụ, xác thực JWT        │  - Cổng Khách thuê (Hợp đồng, sự cố)  │
+│  - Quản lý hóa đơn, phòng, dịch vụ      │  - Tự động hóa thanh toán VietQR      │
+└────────────────────┬────────────────────┴───────────────────┬───────────────────┘
+                     │                                        │
+                     │ HTTP Rest                              │
+                     ▼                                        ▼
+┌─────────────────────────────────────────┐      ┌────────────────────────────────┐
+│   ai_engine (PyTorch - Port 8002)       │      │   DATABASE (MySQL 8.0)         │
+│   - Candidate-scoring Dueling DQN       │      │   - schema: nha_tro.sql        │
+│   - Dynamic Action Space (s_user, a_rm) │      │   - Lưu trữ phòng, hợp đồng,   │
+│   - Multi-Objective Reward Engine       │      │     hóa đơn, lịch sử giao dịch │
+│   - FastAPI Microservice endpoints      │      └────────────────────────────────┘
+└─────────────────────────────────────────┘
+```
 
 ---
 
-## 📦 Cấu Trúc Dự Án
+## 🌟 3. Các Phân Hệ & Điểm Nổi Bật
+
+### 🤖 Phân Hệ AI Gợi Ý Phòng Trọ (Dueling DQN)
+- **Đột phá kiến trúc**: Khắc phục nhược điểm của DQN truyền thống (vốn yêu cầu số lượng phòng cố định). Thuật toán áp dụng kiến trúc **Candidate-Scoring Network**, nhận đầu vào là cặp vector kết hợp $(s_{user}, a_{room})$ và dự đoán điểm Q-Value thông qua 2 nhánh riêng biệt: *Value Stream V(s)* và *Advantage Stream A(s, a)*.
+- **Tối ưu đa mục tiêu (Multi-Objective Reward)**:
+  $$R = R_{tenant} + R_{vacancy} - R_{penalty}$$
+  - $R_{tenant}$: Độ tương thích ngân sách, khoảng cách vị trí và tỷ lệ đáp ứng tiện ích yêu cầu.
+  - $R_{vacancy}$: Điểm thưởng giải phóng phòng trống tồn đọng lâu ngày cho chủ trọ.
+  - $R_{penalty}$: Phạt nặng nếu vi phạm các ràng buộc cứng (giá vượt quá trần, vi phạm quy định).
+- **Trải nghiệm khách hàng tinh tế**: Toàn bộ điểm số Q-value được chuyển đổi sang thanh chỉ số trực quan (*"98% Phù hợp"*, *"Phù hợp ngân sách"*, *"Đầy đủ tiện ích"*, *"Sẵn sàng dọn vào ngay"*), không hiển thị các thuật ngữ toán học phức tạp.
+
+### 💳 Phân Hệ Thanh Toán Tự Động VietQR
+- **Tự động sinh mã VietQR động**: Tạo mã QR thanh toán theo chuẩn EMVCo/Napas247 với số tiền chính xác và nội dung chuyển khoản duy nhất cho từng hóa đơn.
+- **Webhook Gạch nợ thời gian thực**: Khi khách chuyển khoản thành công, hệ thống ngân hàng gửi webhook về máy chủ, hóa đơn tự động chuyển trạng thái `PAID` và cập nhật tức thì trên giao diện qua cơ chế Long-polling.
+- **Mô phỏng 1-Click**: Tích hợp sẵn nút thanh toán thử nghiệm phục vụ demo nghiệm thu đồ án nhanh chóng.
+
+### 🌐 Phân Hệ Web Portal & Mobile
+- **Khách thuê**: Tra cứu phòng, xem phân tích mức độ phù hợp, theo dõi hợp đồng, báo cáo sự cố hư hỏng, thanh toán tiền điện/nước/phòng.
+- **Chủ trọ**: Bảng điều khiển trực quan, quản lý danh sách phòng (trống, đang thuê, bảo trì), tạo hóa đơn hàng tháng, quản trị danh sách người thuê.
+- **Quản trị viên (Admin)**: Thống kê toàn diện doanh thu hệ thống, tỷ lệ lấp đầy phòng, tỷ lệ ghép phòng thành công.
+
+---
+
+## 📂 4. Cấu Trúc Mã Nguồn (Repository Structure)
 
 ```
 Graduation-Thesis/
-├── nhatro-main/              # Laravel API chính (Port 8001)
-│   ├── app/
-│   ├── routes/
-│   ├── resources/
-│   ├── database/
-│   └── .env
-├── NhaTro1/                  # Laravel Frontend (Port 8000)
-│   ├── resources/views/
-│   ├── app/
-│   └── public/
-├── ai_engine/                # Python AI Service (Port 8002)
-│   ├── main.py
-│   ├── requirements.txt
-│   └── models/
-├── DATN_Mobile/              # Flutter Mobile App
-│   ├── lib/
-│   ├── pubspec.yaml
-│   └── android/
-├── Source_code/              # Tài liệu source code
-└── file_bao_cao/            # Báo cáo và tài liệu
+├── NhaTro1/                  # Web Portal & Giao diện quản trị (Laravel PHP - Port 8000)
+│   ├── app/                  # Controllers, Models, Middleware
+│   ├── resources/views/      # Blade templates (Khách thuê, Chủ trọ, Admin, Checkout)
+│   ├── public/               # CSS, JavaScript (portal.css, portal.js)
+│   └── routes/               # Web & API routes (routes/web.php, routes/api.php)
+│
+├── nhatro-main/              # Core API Backend (Laravel PHP - Port 8001)
+│   ├── app/                  # API Controllers, Business Logic, Services
+│   ├── database/             # Migrations, Seeders
+│   └── routes/api.php        # Danh mục RESTful API endpoints
+│
+├── ai_engine/                # Dịch vụ AI Dueling DQN (Python PyTorch - Port 8002)
+│   ├── dqn_model.py          # Kiến trúc Dueling Dynamic DQN Network
+│   ├── train_dqn.py          # Huấn luyện mô hình với Replay Buffer & Target Net
+│   ├── evaluate_dqn.py       # Đánh giá so sánh: DQN vs Greedy vs Random
+│   ├── api.py                # FastAPI microservice (/recommend, /score)
+│   ├── utils.py              # Hàm tính Reward đa mục tiêu & mã hóa Feature
+│   ├── dqn_room.pt           # Trọng số mô hình đã được huấn luyện hội tụ
+│   └── requirements.txt      # Thư viện Python phụ thuộc
+│
+├── DATN_Mobile/              # Ứng dụng di động đa nền tảng (Flutter)
+│   ├── lib/                  # Screens, Controllers, Models, Services
+│   └── pubspec.yaml          # Cấu hình dependencies Flutter
+│
+├── nha_tro.sql               # Cơ sở dữ liệu mẫu MySQL đầy đủ dữ liệu demo
+├── .gitignore                # Cấu hình bỏ qua các file tạm, cache, vendor
+└── README.md                 # Tài liệu hướng dẫn đồ án
 ```
 
 ---
 
-## 🚀 Hướng Dẫn Cài Đặt
+## 🚀 5. Hướng Dẫn Cài Đặt & Vận Hành
 
-### ✅ Yêu Cầu Hệ Thống
-- PHP 7.4+ hoặc PHP 8.0+
-- Composer
-- MySQL 5.7+
-- Python 3.8+
-- Flutter 3.0+
-- Node.js 14+ (nếu sử dụng assets build)
+### ⚙️ Yêu Cầu Môi Trường
+- **PHP**: >= 8.0 với các extension `pdo_mysql`, `mbstring`, `openssl`
+- **Composer**: >= 2.0
+- **Node.js & NPM**: >= 16.x
+- **Python**: >= 3.8 với `pip`
+- **MySQL**: >= 5.7 hoặc 8.0
+- **Flutter SDK**: >= 3.0 (cho ứng dụng di động)
 
-### 1️⃣ Cài Đặt Backend API (nhatro-main)
+---
 
+### Bước 1: Khởi Tạo Cơ Sở Dữ Liệu MySQL
+1. Khởi động MySQL (qua XAMPP, Laragon hoặc Docker).
+2. Tạo database mới tên `nha_tro`:
+   ```sql
+   CREATE DATABASE nha_tro CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   ```
+3. Nhập dữ liệu mẫu từ file `nha_tro.sql`:
+   ```bash
+   mysql -u root -p nha_tro < nha_tro.sql
+   ```
+
+---
+
+### Bước 2: Khởi Động AI Engine Microservice (Port 8002)
 ```bash
-# Clone repository
-git clone https://github.com/DevBaor/Graduation-Thesis.git
-cd Graduation-Thesis/nhatro-main
+cd ai_engine
 
-# Cài đặt dependencies
+# Tạo môi trường ảo Python (khuyến nghị)
+python -m venv venv
+venv\Scripts\activate   # Trên Windows
+# source venv/bin/activate # Trên Linux/Mac
+
+# Cài đặt thư viện phụ thuộc
+pip install -r requirements.txt
+
+# Khởi chạy AI API Server
+python -m uvicorn api:app --host 127.0.0.1 --port 8002 --reload
+```
+> **Kiểm tra**: Truy cập tài liệu API tự động tại: `http://localhost:8002/docs`
+
+---
+
+### Bước 3: Khởi Động Backend API (Port 8001)
+```bash
+cd nhatro-main
 composer install
-
-# Copy file .env
 cp .env.example .env
-
-# Sinh application key
 php artisan key:generate
 
-# Cấu hình database trong .env
-# DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE=datn_db
-# DB_USERNAME=root
-# DB_PASSWORD=
-
-# Migrate database
-php artisan migrate
-
-# Seed data (optional)
-php artisan db:seed
-
-# Chạy server
+# Cấu hình DB_DATABASE=nha_tro, DB_USERNAME, DB_PASSWORD trong .env
 php artisan serve --port=8001
 ```
 
-**URL API**: `http://localhost:8001`
+---
 
-### 2️⃣ Cài Đặt Frontend Web (NhaTro1)
-
+### Bước 4: Khởi Động Web Portal (Port 8000)
 ```bash
-cd ../NhaTro1
-
-# Cài đặt dependencies
+cd NhaTro1/nha-tro-api
 composer install
-
-# Copy file .env
 cp .env.example .env
-
-# Sinh application key
 php artisan key:generate
 
-# Migrate database
-php artisan migrate
-
-# Chạy server
+# Khởi chạy Web Portal
 php artisan serve --port=8000
 ```
+> **Đường dẫn truy cập**:
+> - 🌐 **Trang chủ Khám phá**: `http://localhost:8000/`
+> - ✨ **Gợi ý phòng thông minh (Smart Match)**: `http://localhost:8000/ai-recommend`
+> - 🏢 **Cổng Chủ trọ**: `http://localhost:8000/chu-tro`
+> - 👥 **Cổng Khách thuê & Hóa đơn**: `http://localhost:8000/khach-thue`
+> - 🛡️ **Cổng Quản trị viên (Admin)**: `http://localhost:8000/admin-portal`
 
-**URL Frontend**: `http://localhost:8000`
+---
 
-### 3️⃣ Cài Đặt AI Engine (ai_engine)
-
+### Bước 5: Chạy Ứng Dụng Di Động (Flutter)
 ```bash
-cd ../ai_engine
-
-# Tạo virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# Windows
-venv\Scripts\activate
-# Mac/Linux
-source venv/bin/activate
-
-# Cài đặt dependencies
-pip install -r requirements.txt
-
-# Chạy AI service
-uvicorn main:app --port 8002 --reload
-```
-
-**URL AI API**: `http://localhost:8002`
-
-### 4️⃣ Cài Đặt Mobile App (DATN_Mobile)
-
-```bash
-cd ../DATN_Mobile
-
-# Lấy Flutter dependencies
+cd DATN_Mobile
 flutter pub get
-
-# Chạy trên device hoặc emulator
 flutter run
-
-# Hoặc build APK
-flutter build apk --release
 ```
 
 ---
 
-## 📖 Hướng Dẫn Sử Dụng
+## 📊 6. Kết Quả Huấn Luyện Mô Hình AI
 
-### 🌐 Truy Cập Web
-1. Mở `http://localhost:8000` trong trình duyệt
-2. Đăng nhập với tài khoản admin (xem seed data)
-3. Điều hướng đến các module quản lý
+So sánh hiệu năng giữa thuật toán **Dueling DQN** và các phương pháp cơ sở trên tập dữ liệu kiểm thử (100 kịch bản ghép phòng):
 
-### 📱 Sử Dụng Mobile App
-1. Cài đặt app từ APK hoặc build từ source
-2. Đăng nhập với tài khoản Khách
-3. Xem thông tin phòng, thanh toán, gửi yêu cầu
+| Phương pháp | Tổng Reward trung bình | Điểm hài lòng khách thuê | Ngày phòng trống giảm thiểu |
+| :--- | :---: | :---: | :---: |
+| **Ngẫu nhiên (Random)** | -0.05 | 42.1% | 15.2 ngày |
+| **Tham lam (Greedy Matching)** | +11.02 | 82.4% | 68.5 ngày |
+| **Dueling DQN (Đề tài)** | **+13.08** | **94.8%** | **152.1 ngày** |
 
-### 🤖 Sử Dụng AI Engine
-- AI Engine tự động chạy khi backend API khởi động
-- Dữ liệu được cập nhật hàng ngày/hàng giờ
-- Kết quả phân tích có sẵn qua API
+Mô hình Dueling DQN không chỉ tối đa hóa sự hài lòng của người thuê mà còn chứng minh hiệu quả vượt trội trong việc giúp chủ trọ lấp đầy các phòng trống lâu năm.
 
 ---
 
-## 📊 API Endpoints Chính
+## 👨‍💻 Thông Tin Tác Giả & Đóng Góp
 
-### Authentication
-- `POST /api/login` - Đăng nhập
-- `POST /api/register` - Đăng ký
-- `POST /api/logout` - Đăng xuất
-
-### Phòng
-- `GET /api/rooms` - Lấy danh sách phòng
-- `POST /api/rooms` - Tạo phòng mới
-- `GET /api/rooms/{id}` - Chi tiết phòng
-- `PUT /api/rooms/{id}` - Cập nhật phòng
-- `DELETE /api/rooms/{id}` - Xóa phòng
-
-### Khách
-- `GET /api/residents` - Danh sách Khách
-- `POST /api/residents` - Thêm Khách
-- `GET /api/residents/{id}` - Chi tiết Khách
-
-### Tài Chính
-- `GET /api/payments` - Danh sách thanh toán
-- `POST /api/payments` - Tạo thanh toán
-- `GET /api/reports` - Báo cáo doanh thu
-
-### AI Predictions
-- `GET /api/ai/price-suggestions` - Gợi ý giá phòng
-- `GET /api/ai/demand-forecast` - Dự báo nhu cầu
-- `GET /api/ai/risk-analysis` - Phân tích rủi ro
+- **Tác giả**: Duy Bảo ([@DevBaor](https://github.com/DevBaor))
+- **Email**: baotranduy666666@gmail.com
+- **Khóa luận tốt nghiệp**: Ngành Kỹ thuật Phần mềm / Công nghệ Thông tin (2022 - 2026)
 
 ---
 
-## 👨‍💻 Những Người Đóng Góp
+## 📝 Giấy Phép (License)
 
-- **Duy Bảo (DevBaor)** - Project Lead & Full Stack Developer
-
----
-
-## 📄 Tài Liệu
-
-- `report_coopy_KLCN_TH071_HeThongTro.pdf` - Báo cáo chi tiết đồ án
-- `file_bao_cao/` - Thư mục tài liệu bổ sung
-
----
-
-## 🔗 Liên Kết
-
-- 📧 Email: baotraduy666666@gmail.com
-- 🔗 LinkedIn: [Duy Bảo](https://linkedin.com/in/duybaot105)
-- 💬 GitHub: [@DevBaor](https://github.com/DevBaor)
-
----
-
-## 📝 License
-
-Dự án này được cấp phép theo **MIT License** - xem file [LICENSE](LICENSE) để chi tiết.
-
----
-
-## 🙏 Lời Cảm Ơn
-
-Cảm ơn các thầy cô hướng dẫn và những người góp ý trong quá trình phát triển dự án.
-
----
-
-**Made with ❤️ by Duy Bảo - Graduation Thesis Team**
+Dự án được phân phối dưới giấy phép **MIT License**. Xem chi tiết tại tệp [LICENSE](LICENSE).
